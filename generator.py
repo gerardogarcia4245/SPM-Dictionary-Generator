@@ -92,7 +92,7 @@ def mostrar_menu():
 
 def crear_diccionario():
 
-    diccionario = set()
+    diccionario = []
 
     return diccionario
 
@@ -105,11 +105,22 @@ def regla_mayusculas(palabras, diccionario):
 
     for palabra in palabras:
 
-        diccionario.add(palabra.upper())
+        diccionario.append(palabra.upper())
 
     return diccionario
 
+# ==========================
+# REGLA 2
+# MINÚSCULAS
+# ==========================
 
+def regla_minusculas(palabras, diccionario):
+
+    for palabra in palabras:
+
+        diccionario.append(palabra.lower())
+
+    return diccionario
 
 
 
@@ -131,7 +142,20 @@ def main():
     diccionario = crear_diccionario()
 
     print(f"\nRegla seleccionada: {opcion}")
-    print(f"Entradas actuales: {len(diccionario)}")    
+
+    if opcion == "1":
+
+        diccionario = regla_mayusculas(palabras, diccionario)
+
+    if opcion == "2":
+
+        diccionario = regla_minusculas(palabras, diccionario)
+
+    print(f"Entradas actuales: {len(diccionario)}")
+
+    for palabra in sorted(diccionario):
+
+        print(palabra)
 
 
 # ==========================
