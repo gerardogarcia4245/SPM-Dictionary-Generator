@@ -86,6 +86,33 @@ def mostrar_menu():
 
     return opcion
 
+# ==========================
+# CREAR DICCIONARIO
+# ==========================
+
+def crear_diccionario():
+
+    diccionario = set()
+
+    return diccionario
+
+# ==========================
+# REGLA 1
+# MAYÚSCULAS
+# ==========================
+
+def regla_mayusculas(palabras, diccionario):
+
+    for palabra in palabras:
+
+        diccionario.add(palabra.upper())
+
+    return diccionario
+
+
+
+
+
 
 # ==========================
 # PROGRAMA PRINCIPAL
@@ -101,7 +128,10 @@ def main():
 
     opcion = mostrar_menu()
 
+    diccionario = crear_diccionario()
+
     print(f"\nRegla seleccionada: {opcion}")
+    print(f"Entradas actuales: {len(diccionario)}")    
 
 
 # ==========================
