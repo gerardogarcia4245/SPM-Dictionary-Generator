@@ -129,6 +129,40 @@ def regla_capitalizar(banco, candidatos):
 
     return candidatos
 
+# ==========================
+# MOTOR DE COMBINACIONES
+# ==========================
+
+def generar_combinaciones(banco):
+
+    candidatos = []
+
+    # ======================
+    # PROFUNDIDAD 1 Y 2
+    # ======================
+
+    for primero in banco:
+
+        # Profundidad 1
+
+        candidatos.append(primero)
+
+        for segundo in banco:
+
+            if segundo in [primero]:
+
+                continue
+
+            # Profundidad 2
+
+            candidatos.append(
+                primero + segundo
+            )
+
+    return candidatos
+
+
+
 
 # ==========================
 # PROGRAMA PRINCIPAL
@@ -144,27 +178,29 @@ def main():
 
     opcion = mostrar_menu()
 
-    candidatos = crear_candidatos()
+   # candidatos = crear_candidatos()
 
     print(f"\nRegla seleccionada: {opcion}")
 
-    if opcion == "1":
+ #   if opcion == "1":
+#
+  #      candidatos = regla_mayusculas(banco, candidatos)
+#
+   # if opcion == "2":
+#
+    #    candidatos = regla_minusculas(banco, candidatos)
+#
+   # if opcion == "3":
+#
+    #    candidatos = regla_capitalizar(banco, candidatos)
+#
+   # if opcion == "0":
+#
+    #    candidatos = regla_mayusculas(banco, candidatos)
+    #    candidatos = regla_minusculas(banco, candidatos)
+     #   candidatos = regla_capitalizar(banco, candidatos)
 
-        candidatos = regla_mayusculas(banco, candidatos)
-
-    if opcion == "2":
-
-        candidatos = regla_minusculas(banco, candidatos)
-
-    if opcion == "3":
-
-        candidatos = regla_capitalizar(banco, candidatos)
-
-    if opcion == "0":
-
-        candidatos = regla_mayusculas(banco, candidatos)
-        candidatos = regla_minusculas(banco, candidatos)
-        candidatos = regla_capitalizar(banco, candidatos)
+    candidatos = generar_combinaciones(banco)
 
     for elemento in sorted(candidatos):
 
