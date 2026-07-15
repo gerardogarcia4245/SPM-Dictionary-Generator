@@ -136,7 +136,57 @@ def regla_capitalizar(palabras, diccionario):
 
     return diccionario
 
+# ==========================
+# REGLA 4
+# AGREGAR AÑOS
+# ==========================
 
+def regla_anios(palabras, diccionario):
+
+    anios = ["2024", "2025", "2026", "2027"]
+
+    for palabra in palabras:
+
+        for anio in anios:
+
+            diccionario.append(palabra + anio)
+
+    return diccionario
+
+# ==========================
+# REGLA 5
+# AGREGAR NÚMEROS COMUNES
+# ==========================
+
+def regla_numeros(palabras, diccionario):
+
+    numeros = [
+
+        "1",
+        "12",
+        "123",
+        "1234",
+        "12345",
+        "123456",
+        "01",
+        "02",
+        "10",
+        "11",
+        "22",
+        "99",
+        "0",
+        "00",
+        "000",
+        "00000"
+    ]
+
+    for palabra in palabras:
+
+        for numero in numeros:
+
+            diccionario.append(palabra + numero)
+
+    return diccionario
 
 # ==========================
 # PROGRAMA PRINCIPAL
@@ -168,11 +218,22 @@ def main():
 
         diccionario = regla_capitalizar(palabras, diccionario)
 
-    print(f"Entradas actuales: {len(diccionario)}")
+    if opcion == "4":
+
+        diccionario = regla_anios(palabras, diccionario)
+
+    if opcion == "5":
+
+        diccionario = regla_numeros(palabras, diccionario)
+
+        print(f"Entradas actuales: {len(diccionario)}")
 
     for palabra in sorted(diccionario):
 
         print(palabra)
+ 
+    print(f"Entradas actuales: {len(diccionario)}")
+ 
 
 
 # ==========================
