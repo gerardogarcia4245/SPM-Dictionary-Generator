@@ -123,6 +123,19 @@ def regla_minusculas(palabras, diccionario):
     return diccionario
 
 
+# ==========================
+# REGLA 3
+# CAPITALIZAR
+# ==========================
+
+def regla_capitalizar(palabras, diccionario):
+
+    for palabra in palabras:
+
+        diccionario.append(palabra.capitalize())
+
+    return diccionario
+
 
 
 # ==========================
@@ -150,6 +163,10 @@ def main():
     if opcion == "2":
 
         diccionario = regla_minusculas(palabras, diccionario)
+
+    if opcion == "3":
+
+        diccionario = regla_capitalizar(palabras, diccionario)
 
     print(f"Entradas actuales: {len(diccionario)}")
 
