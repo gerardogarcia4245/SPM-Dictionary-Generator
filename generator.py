@@ -189,6 +189,36 @@ def regla_numeros(palabras, diccionario):
     return diccionario
 
 # ==========================
+# REGLA 6
+# AGREGAR SÍMBOLOS
+# ==========================
+
+def regla_simbolos(palabras, diccionario):
+
+    simbolos = [
+
+        "!",
+        "@",
+        "#",
+        "$",
+        "%",
+        "&",
+        "*",
+        "_",
+        "_",
+        "."
+
+    ]
+
+    for palabra in palabras:
+
+        for simbolo in simbolos:
+
+            diccionario.append(palabra + simbolo)
+
+    return diccionario
+
+# ==========================
 # PROGRAMA PRINCIPAL
 # ==========================
 
@@ -226,7 +256,12 @@ def main():
 
         diccionario = regla_numeros(palabras, diccionario)
 
+    if opcion == "6":
+
+        diccionario = regla_simbolos(palabras, diccionario)
+
         print(f"Entradas actuales: {len(diccionario)}")
+
 
     for palabra in sorted(diccionario):
 
