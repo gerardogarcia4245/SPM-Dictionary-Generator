@@ -37,24 +37,24 @@ def banner():
 
 
 # ==========================
-# LECTURA DEL ARCHIVO BASE
+# LECTURA DEL BANCO
 # ==========================
 
-def leer_palabras():
+def leer_banco():
 
-    palabras = []
+    banco = []
 
     with open(INPUT_FILE, "r", encoding="utf-8") as archivo:
 
         for linea in archivo:
 
-            palabra = linea.strip()
+            elemento = linea.strip()
 
-            if palabra:
+            if elemento:
 
-                palabras.append(palabra)
+                banco.append(elemento)
 
-    return palabras
+    return banco
 
 
 # ==========================
@@ -68,16 +68,6 @@ def mostrar_menu():
     print("[1] Mayúsculas")
     print("[2] Minúsculas")
     print("[3] Capitalizar")
-    print("[4] Agregar años")
-    print("[5] Agregar números comunes")
-    print("[6] Agregar símbolos")
-    print("[7] Año + símbolo")
-    print("[8] Símbolo + año")
-    print("[9] Leet Speak")
-    print("[10] Concatenar palabras")
-    print("[11] Concatenar + símbolo")
-    print("[12] Concatenar + año")
-    print("[13] Concatenar + año + símbolo")
     print()
     print("[0] Aplicar TODAS las reglas")
     print()
@@ -86,41 +76,44 @@ def mostrar_menu():
 
     return opcion
 
+
 # ==========================
-# CREAR DICCIONARIO
+# CREAR CANDIDATOS
 # ==========================
 
-def crear_diccionario():
+def crear_candidatos():
 
-    diccionario = []
+    candidatos = []
 
-    return diccionario
+    return candidatos
+
 
 # ==========================
 # REGLA 1
 # MAYÚSCULAS
 # ==========================
 
-def regla_mayusculas(palabras, diccionario):
+def regla_mayusculas(banco, candidatos):
 
-    for palabra in palabras:
+    for elemento in banco:
 
-        diccionario.append(palabra.upper())
+        candidatos.append(elemento.upper())
 
-    return diccionario
+    return candidatos
+
 
 # ==========================
 # REGLA 2
 # MINÚSCULAS
 # ==========================
 
-def regla_minusculas(palabras, diccionario):
+def regla_minusculas(banco, candidatos):
 
-    for palabra in palabras:
+    for elemento in banco:
 
-        diccionario.append(palabra.lower())
+        candidatos.append(elemento.lower())
 
-    return diccionario
+    return candidatos
 
 
 # ==========================
@@ -128,95 +121,14 @@ def regla_minusculas(palabras, diccionario):
 # CAPITALIZAR
 # ==========================
 
-def regla_capitalizar(palabras, diccionario):
+def regla_capitalizar(banco, candidatos):
 
-    for palabra in palabras:
+    for elemento in banco:
 
-        diccionario.append(palabra.capitalize())
+        candidatos.append(elemento.capitalize())
 
-    return diccionario
+    return candidatos
 
-# ==========================
-# REGLA 4
-# AGREGAR AÑOS
-# ==========================
-
-def regla_anios(palabras, diccionario):
-
-    anios = ["2024", "2025", "2026", "2027"]
-
-    for palabra in palabras:
-
-        for anio in anios:
-
-            diccionario.append(palabra + anio)
-
-    return diccionario
-
-# ==========================
-# REGLA 5
-# AGREGAR NÚMEROS COMUNES
-# ==========================
-
-def regla_numeros(palabras, diccionario):
-
-    numeros = [
-
-        "1",
-        "12",
-        "123",
-        "1234",
-        "12345",
-        "123456",
-        "01",
-        "02",
-        "10",
-        "11",
-        "22",
-        "99",
-        "0",
-        "00",
-        "000",
-        "00000"
-    ]
-
-    for palabra in palabras:
-
-        for numero in numeros:
-
-            diccionario.append(palabra + numero)
-
-    return diccionario
-
-# ==========================
-# REGLA 6
-# AGREGAR SÍMBOLOS
-# ==========================
-
-def regla_simbolos(palabras, diccionario):
-
-    simbolos = [
-
-        "!",
-        "@",
-        "#",
-        "$",
-        "%",
-        "&",
-        "*",
-        "_",
-        "_",
-        "."
-
-    ]
-
-    for palabra in palabras:
-
-        for simbolo in simbolos:
-
-            diccionario.append(palabra + simbolo)
-
-    return diccionario
 
 # ==========================
 # PROGRAMA PRINCIPAL
@@ -226,49 +138,39 @@ def main():
 
     banner()
 
-    palabras = leer_palabras()
+    banco = leer_banco()
 
-    print(f"Palabras encontradas: {len(palabras)}\n")
+    print(f"Elementos encontrados: {len(banco)}\n")
 
     opcion = mostrar_menu()
 
-    diccionario = crear_diccionario()
+    candidatos = crear_candidatos()
 
     print(f"\nRegla seleccionada: {opcion}")
 
     if opcion == "1":
 
-        diccionario = regla_mayusculas(palabras, diccionario)
+        candidatos = regla_mayusculas(banco, candidatos)
 
     if opcion == "2":
 
-        diccionario = regla_minusculas(palabras, diccionario)
+        candidatos = regla_minusculas(banco, candidatos)
 
     if opcion == "3":
 
-        diccionario = regla_capitalizar(palabras, diccionario)
+        candidatos = regla_capitalizar(banco, candidatos)
 
-    if opcion == "4":
+    if opcion == "0":
 
-        diccionario = regla_anios(palabras, diccionario)
+        candidatos = regla_mayusculas(banco, candidatos)
+        candidatos = regla_minusculas(banco, candidatos)
+        candidatos = regla_capitalizar(banco, candidatos)
 
-    if opcion == "5":
+    for elemento in sorted(candidatos):
 
-        diccionario = regla_numeros(palabras, diccionario)
+        print(elemento)
 
-    if opcion == "6":
-
-        diccionario = regla_simbolos(palabras, diccionario)
-
-        print(f"Entradas actuales: {len(diccionario)}")
-
-
-    for palabra in sorted(diccionario):
-
-        print(palabra)
- 
-    print(f"Entradas actuales: {len(diccionario)}")
- 
+    print(f"\nCandidatos generados: {len(candidatos)}")
 
 
 # ==========================
