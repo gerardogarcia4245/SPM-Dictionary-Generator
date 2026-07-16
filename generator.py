@@ -81,11 +81,6 @@ def mostrar_menu():
 # CREAR CANDIDATOS
 # ==========================
 
-def crear_candidatos():
-
-    candidatos = []
-
-    return candidatos
 
 
 # ==========================
@@ -93,7 +88,7 @@ def crear_candidatos():
 # MAYÚSCULAS
 # ==========================
 
-def regla_mayusculas(banco, banco_transformado ):
+def regla_mayusculas(banco, banco_transformado):
 
     for elemento in banco:
 
@@ -102,8 +97,7 @@ def regla_mayusculas(banco, banco_transformado ):
     return banco_transformado
 
 
-# ==========================
-# REGLA 2
+# ========================# REGLA 2
 # MINÚSCULAS
 # ==========================
 
@@ -253,6 +247,7 @@ def main():
        )
 
 
+    banco_transformado = list(dict.fromkeys(banco_transformado))
 
     candidatos = generar_combinaciones(banco_transformado)
 
