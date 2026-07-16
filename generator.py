@@ -128,22 +128,20 @@ def regla_capitalizar(banco, candidatos):
         candidatos.append(elemento.capitalize())
 
     return candidatos
-
 # ==========================
 # MOTOR DE COMBINACIONES
+# PROFUNDIDAD 4
 # ==========================
 
 def generar_combinaciones(banco):
 
     candidatos = []
 
-    # ======================
-    # PROFUNDIDAD 1 Y 2
-    # ======================
-
     for primero in banco:
 
-        # Profundidad 1
+        # -------------------------
+        # PROFUNDIDAD 1
+        # -------------------------
 
         candidatos.append(primero)
 
@@ -153,11 +151,46 @@ def generar_combinaciones(banco):
 
                 continue
 
-            # Profundidad 2
+            # -------------------------
+            # PROFUNDIDAD 2
+            # -------------------------
 
             candidatos.append(
                 primero + segundo
             )
+
+            for tercero in banco:
+
+                if tercero in [primero, segundo]:
+
+                    continue
+
+                # -------------------------
+                # PROFUNDIDAD 3
+                # -------------------------
+
+                candidatos.append(
+                    primero +
+                    segundo +
+                    tercero
+                )
+
+                for cuarto in banco:
+
+                    if cuarto in [primero, segundo, tercero]:
+
+                        continue
+
+                    # -------------------------
+                    # PROFUNDIDAD 4
+                    # -------------------------
+
+                    candidatos.append(
+                        primero +
+                        segundo +
+                        tercero +
+                        cuarto
+                    )
 
     return candidatos
 
@@ -202,12 +235,21 @@ def main():
 
     candidatos = generar_combinaciones(banco)
 
-    for elemento in sorted(candidatos):
+    with open(OUTPUT_FILE, "w", encoding="utf-8") as archivo:
 
-        print(elemento)
+        for elemento in sorted(candidatos):
 
-    print(f"\nCandidatos generados: {len(candidatos)}")
+            archivo.write(elemento + "\n")
+#    for elemento in sorted(candidatos):
 
+ #       print(elemento)
+
+
+    print("\n=========================================")
+    print("Diccionario generado correctamente.")
+    print(f"Candidatos generados: {len(candidatos)}")
+    print(f"Archivo creado: {OUTPUT_FILE}")
+    print("=========================================")
 
 # ==========================
 # INICIO DEL PROGRAMA
