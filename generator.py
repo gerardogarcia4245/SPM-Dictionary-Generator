@@ -93,13 +93,13 @@ def crear_candidatos():
 # MAYÚSCULAS
 # ==========================
 
-def regla_mayusculas(banco, candidatos):
+def regla_mayusculas(banco, banco_transformado ):
 
     for elemento in banco:
 
-        candidatos.append(elemento.upper())
+        banco_transformado.append(elemento.upper())
 
-    return candidatos
+    return banco_transformado
 
 
 # ==========================
@@ -107,13 +107,13 @@ def regla_mayusculas(banco, candidatos):
 # MINÚSCULAS
 # ==========================
 
-def regla_minusculas(banco, candidatos):
+def regla_minusculas(banco, banco_transformado):
 
     for elemento in banco:
 
-        candidatos.append(elemento.lower())
+        banco_transformado.append(elemento.lower())
 
-    return candidatos
+    return banco_transformado
 
 
 # ==========================
@@ -121,13 +121,13 @@ def regla_minusculas(banco, candidatos):
 # CAPITALIZAR
 # ==========================
 
-def regla_capitalizar(banco, candidatos):
+def regla_capitalizar(banco, banco_transformado):
 
     for elemento in banco:
 
-        candidatos.append(elemento.capitalize())
+        banco_transformado.append(elemento.capitalize())
 
-    return candidatos
+    return banco_transformado
 # ==========================
 # MOTOR DE COMBINACIONES
 # PROFUNDIDAD 4
@@ -206,43 +206,62 @@ def main():
     banner()
 
     banco = leer_banco()
-
+    banco_transformado = []
     print(f"Elementos encontrados: {len(banco)}\n")
 
     opcion = mostrar_menu()
 
-   # candidatos = crear_candidatos()
-
     print(f"\nRegla seleccionada: {opcion}")
 
- #   if opcion == "1":
-#
-  #      candidatos = regla_mayusculas(banco, candidatos)
-#
-   # if opcion == "2":
-#
-    #    candidatos = regla_minusculas(banco, candidatos)
-#
-   # if opcion == "3":
-#
-    #    candidatos = regla_capitalizar(banco, candidatos)
-#
-   # if opcion == "0":
-#
-    #    candidatos = regla_mayusculas(banco, candidatos)
-    #    candidatos = regla_minusculas(banco, candidatos)
-     #   candidatos = regla_capitalizar(banco, candidatos)
+    if opcion == "1":
 
-    candidatos = generar_combinaciones(banco)
+      banco_transformado = regla_mayusculas(
+        banco,
+        banco_transformado
+      )
+
+    if opcion == "2":
+
+       banco_transformado = regla_minusculas(
+        banco,
+        banco_transformado
+       )
+
+    if opcion == "3":
+
+       banco_transformado = regla_capitalizar(
+        banco,
+        banco_transformado
+       )
+
+    if opcion == "0":
+
+
+       banco_transformado = regla_mayusculas(
+        banco,
+        banco_transformado
+       )
+
+       banco_transformado = regla_minusculas(
+        banco,
+        banco_transformado
+       )
+
+       banco_transformado = regla_capitalizar(
+        banco,
+        banco_transformado
+       )
+
+
+
+    candidatos = generar_combinaciones(banco_transformado)
 
     with open(OUTPUT_FILE, "w", encoding="utf-8") as archivo:
 
         for elemento in sorted(candidatos):
 
             archivo.write(elemento + "\n")
-#    for elemento in sorted(candidatos):
 
- #       print(elemento)
 
 
     print("\n=========================================")
